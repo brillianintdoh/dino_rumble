@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>wow</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <canvas id="canvas"></canvas>
+        <script src="$GODOT_URL"></script>
+        <script>
+            var engine = new Engine($GODOT_CONFIG);
+            document.addEventListener("DOMContentLoaded", () => {
+                const canvas = document.getElementById("canvas");
+                engine.startGame({ canvas:canvas });
+            });
+        </script>
+    </body>
+</html>

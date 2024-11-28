@@ -1,0 +1,87 @@
+[gd_scene load_steps=11 format=3 uid="uid://du2scu07srx44"]
+
+[ext_resource type="Texture2D" uid="uid://dmex571mjjjqn" path="res://image/dinosaur/1.png" id="1_06st2"]
+[ext_resource type="Texture2D" uid="uid://dbjgo5hj7rpq2" path="res://image/background.png" id="2_7f524"]
+[ext_resource type="Texture2D" uid="uid://dkok5ywdnnfu8" path="res://image/dinosaur/2.png" id="2_hhjv6"]
+[ext_resource type="Texture2D" uid="uid://di0hg3mvftx1o" path="res://image/dinosaur/3.png" id="3_yetyl"]
+[ext_resource type="Texture2D" uid="uid://dsrrn45lym2gq" path="res://image/pteranodon/1.png" id="5_3wxl8"]
+[ext_resource type="Texture2D" uid="uid://dvr402yovypeq" path="res://image/pteranodon/2.png" id="6_f71ry"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qhwcc"]
+radius = 117.94
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i41aj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_06st2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_hhjv6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_yetyl")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7qbnh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_3wxl8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_f71ry")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mnckt"]
+size = Vector2(233.75, 132.5)
+
+[node name="MainNode" type="MainNode"]
+scale = Vector2(2, 2)
+
+[node name="dinosaur" type="Dinosaur" parent="."]
+z_index = 1
+position = Vector2(500, 850)
+velocity = Vector2(1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="dinosaur"]
+shape = SubResource("CircleShape2D_qhwcc")
+
+[node name="Animated" type="AnimatedSprite2D" parent="dinosaur"]
+scale = Vector2(4.5, 4.095)
+sprite_frames = SubResource("SpriteFrames_i41aj")
+frame_progress = 0.402817
+
+[node name="background" type="TextureRect" parent="."]
+offset_left = -770.0
+offset_right = 10443.0
+offset_bottom = 1126.0
+texture = ExtResource("2_7f524")
+stretch_mode = 1
+
+[node name="camera" type="Camera2D" parent="."]
+position = Vector2(1140, 556.5)
+zoom = Vector2(0.3, 0.3)
+
+[node name="Pteranodon" type="Pteranodon" parent="."]
+position = Vector2(1763.5, 145)
+
+[node name="Animated" type="AnimatedSprite2D" parent="Pteranodon"]
+z_index = 1
+position = Vector2(68.5, 42.5)
+scale = Vector2(2.57471, 1.97701)
+sprite_frames = SubResource("SpriteFrames_7qbnh")
+frame_progress = 0.574418
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pteranodon"]
+position = Vector2(68.625, 45.25)
+shape = SubResource("RectangleShape2D_mnckt")
