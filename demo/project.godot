@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="sw"
+config/name="dino_rumble"
 run/main_scene="res://node/main_node.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
