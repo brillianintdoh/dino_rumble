@@ -1,8 +1,10 @@
 #include "pteranodon.h"
 #include<godot_cpp/core/class_db.hpp>
+#include<godot_cpp/classes/input.hpp>
 using namespace godot;
 
 Pteranodon::Pteranodon() {
+    isUP = 0;
 }
 
 Pteranodon::~Pteranodon() {}
@@ -15,7 +17,16 @@ void Pteranodon::_ready() {
 }
 
 void Pteranodon::_physics_process(double delta) {
-    if(is_Web) {
-        // int w = js->get_meta("", 0);
+    if(!is_Web || isRunble) return;
+    Input& i = *Input::get_singleton();
+    Vector2 vec = get_position();
+    if(i.is_action_just_pressed("ui_up") && isUP) {
+        vec.y -= 90;
+        isUP = 0;
+    }else if(i.is_action_just_pressed("ui_down") && !isUP) {
+        vec.y += 90;
+        isUP = 1;
     }
+
+    set_position(vec);
 }

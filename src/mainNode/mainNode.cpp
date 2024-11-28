@@ -17,7 +17,7 @@ void MainNode::_ready() {
     is_Web = OS::get_singleton()->get_name() == "Web";
 
     if(is_Web) {
-        js->get_interface("console")->call("log", "wow sans");
+        isRunble = js->get_meta("isRunble", 1);
     }
 }
 

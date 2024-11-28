@@ -6,5 +6,6 @@ using namespace godot;
 
 extern JavaScriptBridge* js;
 extern int is_Web;
+extern int isRunble;
 
 #endif

@@ -13,6 +13,7 @@ namespace godot {
         private:
             AnimatedSprite2D* animated;
             JavaScriptBridge* js;
+            int isUP;
 
         public:
             Pteranodon();

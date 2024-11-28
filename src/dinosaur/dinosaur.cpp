@@ -1,4 +1,5 @@
 #include "dinosaur.h"
+#include "../env/env.h"
 #include<godot_cpp/classes/input.hpp>
 #include<godot_cpp/core/class_db.hpp>
 using namespace godot;
@@ -19,8 +20,8 @@ void Dinosaur::_ready() {
 }
 
 void Dinosaur::_physics_process(double delta) {
+    if(!isRunble) return;
     Input& i = *Input::get_singleton(); 
-    Vector2 scale = animated->get_scale();
     Vector2 vec = get_position();
     if(i.is_action_just_pressed("ui_up") && isUP) {
         vec.y -= 90;
@@ -30,6 +31,5 @@ void Dinosaur::_physics_process(double delta) {
         isUP = 1;
     }
 
-    animated->set_scale(scale);
     set_position(vec);
 }
