@@ -17,7 +17,7 @@ void Pteranodon::_ready() {
 }
 
 void Pteranodon::_physics_process(double delta) {
-    if(!is_Web || isRunble) return;
+    if(isRunble) return;
     Input& i = *Input::get_singleton();
     Vector2 vec = get_position();
     if(i.is_action_just_pressed("ui_up") && isUP) {
