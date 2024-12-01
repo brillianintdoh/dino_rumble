@@ -27,6 +27,8 @@ void Pteranodon::_physics_process(double delta) {
         vec.y += 90;
         isUP = 1;
     }
+    String data = "{ \"y\":\""+String::num(vec.y)+"\" }";
+    ws->send_text(data);
 
     set_position(vec);
 }

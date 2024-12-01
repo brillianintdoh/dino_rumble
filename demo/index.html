@@ -1,18 +1,34 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>wow</title>
+        <title> 게임 </title>
         <meta charset="UTF-8">
+        <style>
+            html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+            }
+        </style>
     </head>
     <body>
-        <canvas id="canvas"></canvas>
+        <canvas id="game"></canvas>
+        <main id="main">
+            <button id="wow">공룡</button>
+            <button id="wow2">프테라</button>
+        </main>
+
         <script src="$GODOT_URL"></script>
         <script>
-            var engine = new Engine($GODOT_CONFIG);
-            document.addEventListener("DOMContentLoaded", () => {
-                const canvas = document.getElementById("canvas");
-                engine.startGame({ canvas:canvas });
-            });
+            const engine = new Engine($GODOT_CONFIG);
+            window.startGame = () => {
+                const canvas = document.getElementById("game");
+                engine.startGame({
+                    canvas:canvas,
+                    canvasResizePolicy: 2
+                });
+            }
         </script>
+        <script src="/js/index.js"></script>
     </body>
 </html>
