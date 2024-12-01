@@ -33,17 +33,19 @@ void MainNode::webSocket() {
     ws->poll();
 
     if(ws->get_ready_state() == WebSocketPeer::STATE_OPEN) {
-        if(ws->was_string_packet()) {
+        if(ws->get_available_packet_count() > 0) {
             String packet = ws->get_packet().get_string_from_utf8();
-            Variant data = JSON::parse_string(packet);
+            Variant json = JSON::parse_string(packet);
 
             if(isRunble) {
                 Vector2 vec = pteranodon->get_position();
-                vec.y = data.get("y");
+                vec.x = json.get("x");
+                vec.y = json.get("y");
                 pteranodon->set_position(vec);
             }else {
                 Vector2 vec = dinosaur->get_position();
-                vec.y = data.get("y");
+                vec.x = json.get("x");
+                vec.y = json.get("y");
                 dinosaur->set_position(vec);
             }
         }
@@ -58,8 +60,6 @@ void MainNode::_process(double delta) {
     }else {
         background->set_position(Vector2(-300,0));
     }
-    String data = "{ \"y\":\""+String::num(vec.y)+"\" }";
-    ws->send_text(data);
 
     webSocket();
 }
