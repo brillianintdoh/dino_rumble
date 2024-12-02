@@ -2,4 +2,4 @@
 JavaScriptBridge* js = nullptr;
 Ref<WebSocketPeer> ws;
 int is_Web = false;
-int isRunble = true;
+int isRunble = 2;

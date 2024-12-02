@@ -23,7 +23,6 @@ void MainNode::_ready() {
     is_Web = OS::get_singleton()->get_name() == "Web";
 
     if(is_Web) {
-        isRunble = js->eval("window.isRunble");
         ws->connect_to_url("wss://game.ourgram.co.kr/ws");
     }
 }
@@ -36,17 +35,22 @@ void MainNode::webSocket() {
         if(ws->get_available_packet_count() > 0) {
             String packet = ws->get_packet().get_string_from_utf8();
             Variant json = JSON::parse_string(packet);
-
-            if(isRunble) {
-                Vector2 vec = pteranodon->get_position();
-                vec.x = json.get("x");
-                vec.y = json.get("y");
-                pteranodon->set_position(vec);
-            }else {
-                Vector2 vec = dinosaur->get_position();
-                vec.x = json.get("x");
-                vec.y = json.get("y");
-                dinosaur->set_position(vec);
+            Variant type = json.get("type");
+            if(type == "okLink") {
+                isRunble = json.get("p1");
+                js->eval("loadOk()");
+            }else if(type == "move") {
+                if(isRunble) {
+                    Vector2 vec = pteranodon->get_position();
+                    vec.x = json.get("x");
+                    vec.y = json.get("y");
+                    pteranodon->set_position(vec);
+                }else {
+                    Vector2 vec = dinosaur->get_position();
+                    vec.x = json.get("x");
+                    vec.y = json.get("y");
+                    dinosaur->set_position(vec);
+                }
             }
         }
     }

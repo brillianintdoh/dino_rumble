@@ -20,7 +20,7 @@ void Dinosaur::_ready() {
 }
 
 void Dinosaur::_physics_process(double delta) {
-    if(!isRunble) return;
+    if(!isRunble || isRunble == 2) return;
     int isDown = false;
     Input& i = *Input::get_singleton();
     Vector2 vec = get_position();
@@ -34,10 +34,7 @@ void Dinosaur::_physics_process(double delta) {
         isUP = 1;
     }
 
-    if(isDown) {
-        String data = "{ \"x\":"+String::num(vec.x)+", \"y\":\""+String::num(vec.y)+"\" }";
-        ws->send_text(data);
-    }
+    if(isDown) ws->send_text("{ \"type\":\"move\", \"x\":"+String::num(vec.x)+", \"y\":"+String::num(vec.y)+" }");
 
     set_position(vec);
 }

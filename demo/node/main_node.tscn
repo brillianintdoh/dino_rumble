@@ -58,11 +58,11 @@ shape = SubResource("CircleShape2D_qhwcc")
 [node name="Animated" type="AnimatedSprite2D" parent="dinosaur"]
 scale = Vector2(4.5, 4.095)
 sprite_frames = SubResource("SpriteFrames_i41aj")
-frame_progress = 0.361199
+frame_progress = 0.655762
 
 [node name="background" type="TextureRect" parent="."]
-offset_left = -1842.0
-offset_right = 9371.0
+offset_left = -2180.0
+offset_right = 9033.0
 offset_bottom = 1126.0
 texture = ExtResource("2_7f524")
 stretch_mode = 1
@@ -79,7 +79,7 @@ z_index = 1
 position = Vector2(68.5, 42.5)
 scale = Vector2(2.57471, 1.97701)
 sprite_frames = SubResource("SpriteFrames_7qbnh")
-frame_progress = 0.5328
+frame_progress = 0.827363
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pteranodon"]

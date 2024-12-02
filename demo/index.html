@@ -10,24 +10,33 @@
                 margin: 0;
             }
         </style>
+        <script src="/js/boot.js"></script>
     </head>
-    <body>
-        <canvas id="game"></canvas>
-        <main id="main">
-            <button id="wow">공룡</button>
-            <button id="wow2">프테라</button>
+    <body class="overflow-hidden">
+        <main id="main" class="bg-black w-100 h-100 z-2 position-relative">
+            <div class="position-absolute top-50 start-50 translate-middle">
+                <div class="spinner-border text-light" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
         </main>
+        <canvas id="game" class="z-1"></canvas>
 
         <script src="$GODOT_URL"></script>
         <script>
             const engine = new Engine($GODOT_CONFIG);
-            window.startGame = () => {
+            document.addEventListener("DOMContentLoaded", () => {
+                const main = document.getElementById("main");
+                window.loadOk = () => {
+                    main.style.display = "none";
+                }
+
                 const canvas = document.getElementById("game");
                 engine.startGame({
                     canvas:canvas,
                     canvasResizePolicy: 2
                 });
-            }
+            });
         </script>
         <script src="/js/index.js"></script>
     </body>
