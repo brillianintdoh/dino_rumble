@@ -11,7 +11,6 @@ namespace godot {
 
         private:
             int isUP;
-            float speed;
             AnimatedSprite2D* animated;
 
         public:

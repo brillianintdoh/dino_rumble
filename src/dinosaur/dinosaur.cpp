@@ -5,7 +5,6 @@
 using namespace godot;
 
 Dinosaur::Dinosaur() {
-    speed = 100.0f;
     isUP = 1;
 }
 
