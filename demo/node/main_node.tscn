@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://du2scu07srx44"]
+[gd_scene load_steps=14 format=3 uid="uid://du2scu07srx44"]
 
 [ext_resource type="Texture2D" uid="uid://dmex571mjjjqn" path="res://image/dinosaur/1.png" id="1_06st2"]
 [ext_resource type="Texture2D" uid="uid://dbjgo5hj7rpq2" path="res://image/background.png" id="2_7f524"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://di0hg3mvftx1o" path="res://image/dinosaur/3.png" id="3_yetyl"]
 [ext_resource type="Texture2D" uid="uid://dsrrn45lym2gq" path="res://image/pteranodon/1.png" id="5_3wxl8"]
 [ext_resource type="Texture2D" uid="uid://dvr402yovypeq" path="res://image/pteranodon/2.png" id="6_f71ry"]
+[ext_resource type="Texture2D" uid="uid://bhmvd84akjjvt" path="res://image/object/stone1.png" id="7_irnqf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qhwcc"]
 radius = 117.94
@@ -45,7 +46,10 @@ animations = [{
 size = Vector2(233.75, 132.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wf43r"]
-size = Vector2(2916, 99.5)
+size = Vector2(7000, 99.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_re3x1"]
+size = Vector2(192.5, 130)
 
 [node name="MainNode" type="MainNode"]
 scale = Vector2(2, 2)
@@ -61,11 +65,11 @@ shape = SubResource("CircleShape2D_qhwcc")
 [node name="Animated" type="AnimatedSprite2D" parent="dinosaur"]
 scale = Vector2(4.5, 4.095)
 sprite_frames = SubResource("SpriteFrames_i41aj")
-frame_progress = 0.841005
+frame_progress = 0.666676
 
 [node name="background" type="TextureRect" parent="."]
-offset_left = -1592.0
-offset_right = 9621.0
+offset_left = -334.0
+offset_right = 10879.0
 offset_bottom = 1126.0
 texture = ExtResource("2_7f524")
 stretch_mode = 1
@@ -82,15 +86,30 @@ z_index = 1
 position = Vector2(68.5, 42.5)
 scale = Vector2(2.57471, 1.97701)
 sprite_frames = SubResource("SpriteFrames_7qbnh")
-frame_progress = 0.0126036
+frame_progress = 0.838278
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pteranodon"]
 position = Vector2(68.625, 45.25)
 shape = SubResource("RectangleShape2D_mnckt")
 
-[node name="Floor" type="Floor" parent="."]
+[node name="Floor" type="StaticBody2D" parent="."]
 position = Vector2(1012.5, 1021.5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
 shape = SubResource("RectangleShape2D_wf43r")
+
+[node name="store1" type="GameObject" parent="."]
+position = Vector2(204.5, 2261.5)
+gravity_scale = 0.0
+contact_monitor = true
+max_contacts_reported = 3
+linear_velocity = Vector2(-149085, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="store1"]
+scale = Vector2(0.826471, 0.738235)
+texture = ExtResource("7_irnqf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="store1"]
+position = Vector2(0, 22)
+shape = SubResource("RectangleShape2D_re3x1")

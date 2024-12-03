@@ -1,6 +1,7 @@
 #ifndef Pteranodon_H
 #define Pteranodon_H
 #include "../env/env.h"
+#include "../gameObject/gameObject.h"
 #include<godot_cpp/classes/character_body2d.hpp>
 #include<godot_cpp/classes/animated_sprite2d.hpp>
 namespace godot {
@@ -12,7 +13,7 @@ namespace godot {
 
         private:
             AnimatedSprite2D* animated;
-            JavaScriptBridge* js;
+            GameObject* store1;
             int isUP;
 
         public:

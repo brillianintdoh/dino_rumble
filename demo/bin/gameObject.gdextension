@@ -1,6 +1,6 @@
 [configuration]
 
-entry_symbol = "floor_main_init"
+entry_symbol = "gameObject_main_init"
 compatibility_minimum = "4.1"
 
 [libraries]
