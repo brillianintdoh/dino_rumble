@@ -21,7 +21,6 @@ void GameObject::_ready() {
 void GameObject::onCollision(Node* body) {
     String name = body->get_name().to_utf8_buffer().get_string_from_utf8();
     if(name == "Floor") {
-        set_linear_velocity(Vector2(0,0));
         queue_free();
     }
 }
