@@ -24,6 +24,11 @@ void GameObject::onCollision(Node* body) {
     if(name == "Floor" || name == "dinosaur") {
         queue_free();
         ws->send_text("{ \"type\":\"o1_delete\" }");
+        if(name == "dinosaur") {
+            heart.back()->queue_free();
+            heart.pop_back();
+            ws->send_text("{ \"type\":\"heart\" }");
+        }
     }
 }
 

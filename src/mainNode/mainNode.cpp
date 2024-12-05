@@ -24,6 +24,10 @@ void MainNode::_ready() {
     js = JavaScriptBridge::get_singleton();
     is_Web = OS::get_singleton()->get_name() == "Web";
 
+    for(int i=1; i <= 3; i++) {
+        heart.push_back(Object::cast_to<TextureRect>(get_node_internal("camera/heart"+String::num(i))));
+    }
+
     if(is_Web) {
         ws->connect_to_url("wss://game.ourgram.co.kr/ws");
     }
@@ -67,6 +71,9 @@ void MainNode::webSocket() {
                 store = nullptr;
             }else if(type == "o1" && store != nullptr) {
                 store->set_position(Vector2(json.get("x"), json.get("y")));
+            }else if(type == "heart") {
+                heart.back()->queue_free();
+                heart.pop_back();
             }
         }
     }else if (ws->get_ready_state() == WebSocketPeer::STATE_CLOSED || ws->get_ready_state() == WebSocketPeer::STATE_CLOSING) {
