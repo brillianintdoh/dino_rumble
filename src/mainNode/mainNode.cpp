@@ -5,6 +5,7 @@
 using namespace godot;
 
 MainNode::MainNode() {
+    store = nullptr;
     ws.instantiate();
 }
 
@@ -19,6 +20,7 @@ void MainNode::_ready() {
     background = Object::cast_to<TextureRect>(get_node_internal("background"));
     dinosaur = Object::cast_to<Dinosaur>(get_node_internal("dinosaur"));
     pteranodon = Object::cast_to<Pteranodon>(get_node_internal("Pteranodon"));
+    store1 = Object::cast_to<GameObject>(get_node_internal("store1"));
     js = JavaScriptBridge::get_singleton();
     is_Web = OS::get_singleton()->get_name() == "Web";
 
@@ -51,8 +53,25 @@ void MainNode::webSocket() {
                     vec.y = json.get("y");
                     dinosaur->set_position(vec);
                 }
+            }else if(type == "o1_create") {
+                Node* store_copy = store1->duplicate();
+                add_child(store_copy);
+
+                store = Object::cast_to<GameObject>(store_copy);
+                Vector2 vec = pteranodon->get_global_position();
+                vec.x -= 100;
+                vec.y += 100;
+                store->set_global_position(vec);
+            }else if(type == "o1_delete") {
+                store->queue_free();
+                store = nullptr;
+            }else if(type == "o1" && store != nullptr) {
+                store->set_position(Vector2(json.get("x"), json.get("y")));
             }
         }
+    }else if (ws->get_ready_state() == WebSocketPeer::STATE_CLOSED || ws->get_ready_state() == WebSocketPeer::STATE_CLOSING) {
+        printf("연결 끊김 재연결 시도중..\n");
+        ws->connect_to_url("wss://game.ourgram.co.kr/ws");
     }
 }
 

@@ -17,6 +17,7 @@ namespace godot {
             TextureRect* background;
             Pteranodon* pteranodon;
             Dinosaur* dinosaur;
+            GameObject* store;
 
         public:
             MainNode();
