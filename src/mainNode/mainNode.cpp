@@ -47,15 +47,9 @@ void MainNode::webSocket() {
                 js->eval("loadOk()");
             }else if(type == "move") {
                 if(isRunble) {
-                    Vector2 vec = pteranodon->get_position();
-                    vec.x = json.get("x");
-                    vec.y = json.get("y");
-                    pteranodon->set_position(vec);
+                    pteranodon->set_position(Vector2(json.get("x"), json.get("y")));
                 }else {
-                    Vector2 vec = dinosaur->get_position();
-                    vec.x = json.get("x");
-                    vec.y = json.get("y");
-                    dinosaur->set_position(vec);
+                    dinosaur->set_position(Vector2(json.get("x"), json.get("y")));
                 }
             }else if(type == "o1_create") {
                 Node* store_copy = store1->duplicate();
