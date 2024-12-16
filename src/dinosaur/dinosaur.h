@@ -10,7 +10,6 @@ namespace godot {
             static void _bind_methods();
 
         private:
-            int isUP;
             AnimatedSprite2D* animated;
 
         public:

@@ -17,14 +17,18 @@ void GameObject::_ready() {
     connect("body_entered", Callable(this , "onCollision"));
     set_linear_velocity(Vector2(0,0));
     set_lock_rotation_enabled(true);
+    set_collision_layer(1);
 }
 
 void GameObject::onCollision(Node* body) {
     String name = body->get_name().to_utf8_buffer().get_string_from_utf8();
-    if(name == "Floor" || name == "dinosaur") {
+    if(name == "Floor") {
         queue_free();
         ws->send_text("{ \"type\":\"o1_delete\" }");
-        if(name == "dinosaur") {
+    }else if(name == "dinosaur") {
+        if(isUPdino && get_z_index() == 4) {
+            set_collision_layer(0);
+        }else {
             heart.back()->queue_free();
             heart.pop_back();
             ws->send_text("{ \"type\":\"heart\" }");

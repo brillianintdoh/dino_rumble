@@ -50,6 +50,7 @@ void MainNode::webSocket() {
                     pteranodon->set_position(Vector2(json.get("x"), json.get("y")));
                 }else {
                     dinosaur->set_position(Vector2(json.get("x"), json.get("y")));
+                    isUPdino = json.get("isUP");
                 }
             }else if(type == "o1_create") {
                 Node* store_copy = store1->duplicate();

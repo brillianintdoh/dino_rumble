@@ -10,7 +10,6 @@ extern JavaScriptBridge* js;
 extern std::vector<TextureRect*> heart;
 extern GameObject* store1;
 extern Ref<WebSocketPeer> ws;
-extern int is_Web;
-extern int isRunble;
+extern int is_Web, isRunble, isUPdino;
 
 #endif

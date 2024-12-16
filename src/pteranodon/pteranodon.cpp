@@ -42,8 +42,15 @@ void Pteranodon::_physics_process(double delta) {
             vec.x -= 100;
             vec.y += 100;
             store->set_global_position(vec);
+            if(!isUP) {
+                Vector2 scale = store->get_scale();
+                scale.x += 0.01;
+                scale.y += 0.01;
+                store->set_scale(scale);
+                store->set_z_index(4);
+            }
             store->set_gravity_scale(1);
-            ws->send_text("{ \"type\":\"o1_create\" }");
+            ws->send_text("{ \"type\":\"o1_create\", \"isUP\": "+String::num(isUP)+" }");
         }
     }
 
