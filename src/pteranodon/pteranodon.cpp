@@ -5,6 +5,7 @@ using namespace godot;
 
 Pteranodon::Pteranodon() {
     isUP = 0;
+    cooling_time = 0;  
 }
 
 Pteranodon::~Pteranodon() {}
@@ -32,8 +33,13 @@ void Pteranodon::_physics_process(double delta) {
     }
     
     if(isDown) ws->send_text("{ \"type\":\"move\", \"x\":"+String::num(vec.x)+", \"y\":"+String::num(vec.y)+" }");
+    if(cooling_time != 0) {
+        cooling_time += delta;
+        if(cooling_time >= 2.5) cooling_time = 0;
+    }
 
-    if(i.is_action_just_pressed("ui_select")) {
+    if(i.is_action_just_pressed("ui_select") && cooling_time == 0) {
+        cooling_time += delta;
         Node* store_copy = store1->duplicate();
         Object::cast_to<Node2D>(get_node_internal("../../MainNode"))->add_child(store_copy);
 
@@ -42,13 +48,8 @@ void Pteranodon::_physics_process(double delta) {
             vec.x -= 100;
             vec.y += 100;
             store->set_global_position(vec);
-            if(!isUP) {
-                Vector2 scale = store->get_scale();
-                scale.x += 0.01;
-                scale.y += 0.01;
-                store->set_scale(scale);
-                store->set_z_index(4);
-            }
+            if(isUP) store->set_z_index(2);
+            else store->set_z_index(3);
             store->set_gravity_scale(1);
             ws->send_text("{ \"type\":\"o1_create\", \"isUP\": "+String::num(isUP)+" }");
         }

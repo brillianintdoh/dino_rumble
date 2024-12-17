@@ -8,8 +8,6 @@ namespace godot {
         protected:
             static void _bind_methods();
 
-        private:
-
         public:
             GameObject();
             ~GameObject();

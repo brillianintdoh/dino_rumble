@@ -12,6 +12,7 @@ void Dinosaur::_bind_methods() {}
 
 void Dinosaur::_ready() {
     animated = Object::cast_to<AnimatedSprite2D>(get_node_internal("Animated"));
+    dinoCollision = Object::cast_to<CollisionShape2D>(get_node_internal("CollisionShape2D"));
     animated->play();
 }
 

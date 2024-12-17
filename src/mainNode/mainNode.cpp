@@ -61,6 +61,8 @@ void MainNode::webSocket() {
                 vec.x -= 100;
                 vec.y += 100;
                 store->set_global_position(vec);
+                if(json.get("isUP")) store->set_z_index(2);
+                else store->set_z_index(3);
             }else if(type == "o1_delete") {
                 store->queue_free();
                 store = nullptr;

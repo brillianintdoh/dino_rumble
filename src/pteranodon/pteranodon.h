@@ -13,6 +13,7 @@ namespace godot {
         private:
             AnimatedSprite2D* animated;
             int isUP;
+            double cooling_time;
 
         public:
             Pteranodon();
