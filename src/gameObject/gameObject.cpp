@@ -25,6 +25,13 @@ void GameObject::onCollision(Node* body) {
         if((isUPdino && get_z_index() == 3) || (!isUPdino && get_z_index() == 2)) return;
         heart.pop_back();
         ws->send_text("{ \"type\":\"heart\" }");
+
+        if(heart.size() == 0) {
+            gameOver = true;
+            String over = isRunble ? "true" : "false";
+            js->eval("gameOver("+over+")");
+            ws->send_text("{ \"type\": \"gameOver\" }");
+        }
     }
 
     if(name == "Floor" || name == "dinosaur") {
@@ -34,7 +41,7 @@ void GameObject::onCollision(Node* body) {
 }
 
 void GameObject::_physics_process(double delta) {
-    if(get_gravity_scale() && !isRunble) {
+    if(get_gravity_scale() && !isRunble && !gameOver) {
         Vector2 vec = get_linear_velocity();
         vec.x -= 60;
         set_linear_velocity(vec);

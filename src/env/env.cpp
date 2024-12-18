@@ -4,4 +4,4 @@ GameObject* store1 = nullptr;
 CollisionShape2D* dinoCollision = nullptr;
 std::vector<TextureRect*> heart;
 Ref<WebSocketPeer> ws;
-int is_Web = false, isRunble = 2, isUPdino = 1;
+int is_Web = false, isRunble = 2, isUPdino = true, gameOver = false;

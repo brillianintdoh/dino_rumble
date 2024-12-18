@@ -44,6 +44,8 @@ void MainNode::webSocket() {
             Variant type = json.get("type");
             if(type == "okLink") {
                 isRunble = json.get("p1");
+                String player = isRunble ? "true" : "false";
+                js->eval("setPlayer('"+player+"')");
                 js->eval("loadOk()");
             }else if(type == "move") {
                 if(isRunble) {
@@ -71,6 +73,10 @@ void MainNode::webSocket() {
             }else if(type == "heart") {
                 heart.back()->queue_free();
                 heart.pop_back();
+            }else if(type == "gameOver") {
+                gameOver = true;
+                String over = isRunble ? "true" : "false";
+                js->eval("gameOver("+over+")");
             }
         }
     }else if (ws->get_ready_state() == WebSocketPeer::STATE_CLOSED || ws->get_ready_state() == WebSocketPeer::STATE_CLOSING) {
@@ -80,6 +86,7 @@ void MainNode::webSocket() {
 }
 
 void MainNode::_process(double delta) {
+    if(gameOver) return;
     Vector2 vec = background->get_position();
     vec.x -= 2;
     if(vec.x >= -2550) {
@@ -88,5 +95,7 @@ void MainNode::_process(double delta) {
         background->set_position(Vector2(-300,0));
     }
 
+    time+=delta;
+    js->eval("setTime("+String::num(time)+")");
     webSocket();
 }

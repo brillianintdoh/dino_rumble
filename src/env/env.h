@@ -12,6 +12,6 @@ extern std::vector<TextureRect*> heart;
 extern GameObject* store1;
 extern Ref<WebSocketPeer> ws;
 extern CollisionShape2D* dinoCollision;
-extern int is_Web, isRunble, isUPdino;
+extern int is_Web, isRunble, isUPdino, gameOver;
 
 #endif

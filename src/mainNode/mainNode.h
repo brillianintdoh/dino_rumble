@@ -18,6 +18,7 @@ namespace godot {
             Pteranodon* pteranodon;
             Dinosaur* dinosaur;
             GameObject* store;
+            double time;
 
         public:
             MainNode();

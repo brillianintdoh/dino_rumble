@@ -17,7 +17,7 @@ void Dinosaur::_ready() {
 }
 
 void Dinosaur::_physics_process(double delta) {
-    if(!isRunble || isRunble == 2) return;
+    if(!isRunble || isRunble == 2 || gameOver) return;
     int isDown = false;
     Input& i = *Input::get_singleton();
     Vector2 vec = get_position();
