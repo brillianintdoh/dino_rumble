@@ -41,7 +41,9 @@
 - 친구와 함께 즐기는 1:1 대결
 
 ## 🎮 게임 접속
-<a align="center" href="https://game.ourgram.co.kr/">
-  <img src="./github/qrcode.png" alt="게임 QR코드" width="200"/>
-  <p>QR코드를 스캔하여 게임 접속</p>
-</a>
+<div align="center">
+  <a href="https://game.ourgram.co.kr/">
+    <img src="./github/qrcode.png" alt="게임 QR코드" width="200"/>
+    <p>QR코드를 스캔하여 게임 접속</p>
+  </a>
+</div>
