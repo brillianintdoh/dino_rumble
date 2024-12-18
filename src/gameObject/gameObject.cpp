@@ -23,6 +23,7 @@ void GameObject::onCollision(Node* body) {
     String name = body->get_name().to_utf8_buffer().get_string_from_utf8();
     if(name == "dinosaur") {
         if((isUPdino && get_z_index() == 3) || (!isUPdino && get_z_index() == 2)) return;
+        heart.back()->queue_free();
         heart.pop_back();
         ws->send_text("{ \"type\":\"heart\" }");
 
