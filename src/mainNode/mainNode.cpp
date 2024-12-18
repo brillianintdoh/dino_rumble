@@ -95,7 +95,10 @@ void MainNode::_process(double delta) {
         background->set_position(Vector2(-300,0));
     }
 
-    time+=delta;
-    js->eval("setTime("+String::num(time)+")");
     webSocket();
+
+    if(isRunble != 2) {
+        time+=delta;
+        js->eval("setTime("+String::num(time)+")");
+    }
 }

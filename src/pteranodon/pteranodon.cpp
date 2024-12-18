@@ -35,7 +35,7 @@ void Pteranodon::_physics_process(double delta) {
     if(isDown) ws->send_text("{ \"type\":\"move\", \"x\":"+String::num(vec.x)+", \"y\":"+String::num(vec.y)+" }");
     if(cooling_time != 0) {
         cooling_time += delta;
-        if(cooling_time >= 2.5) cooling_time = 0;
+        if(cooling_time >= 1.5) cooling_time = 0;
     }
 
     if(i.is_action_just_pressed("ui_select") && cooling_time == 0) {
