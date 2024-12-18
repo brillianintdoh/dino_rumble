@@ -45,7 +45,7 @@ void MainNode::webSocket() {
             if(type == "okLink") {
                 isRunble = json.get("p1");
                 String player = isRunble ? "true" : "false";
-                js->eval("setPlayer('"+player+"')");
+                js->eval("setPlayer("+player+")");
                 js->eval("loadOk()");
             }else if(type == "move") {
                 if(isRunble) {
