@@ -5,7 +5,7 @@ using namespace godot;
 
 Pteranodon::Pteranodon() {
     isUP = 0;
-    cooling_time = 0;  
+    cooling_time = 0;
 }
 
 Pteranodon::~Pteranodon() {}
